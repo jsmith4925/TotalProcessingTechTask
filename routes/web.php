@@ -3,6 +3,7 @@
 namespace App\Http\Controllers{
 
     use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\TransactionController;
 
     /*
     |--------------------------------------------------------------------------
@@ -19,11 +20,13 @@ namespace App\Http\Controllers{
         return view('index');
     });
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
 
-    Route::get('/payment', [HomeController::class, 'index'])->name('payment');
+    Route::any('/payment', [HomeController::class, 'payment'])->name('payment');
 
-    Route::post('/order', [TransactionController::class, 'order'])->name('order');
+    Route::post('/submitOrder', [TransactionController::Class, 'submitOrder']);
+
+    Route::get('/completeOrder', [TransactionController::Class, 'completeOrder']);
 
 }
 

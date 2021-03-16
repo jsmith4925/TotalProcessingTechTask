@@ -27,9 +27,30 @@ class HomeController extends Controller
 
         $transactions = Transaction::all();
 
-        return view('home', [
+        return view('index', [
             'transactions' => $transactions
         ]);
+    }  
+      
+    
+    public function home()
+    {
+        $transactions = Transaction::all();
+        return view('home', ['transactions' => $transactions]);
+    }
+
+
+    public function payment(Request $request)
+    {
+        if ($request->session()->has('responseData'))
+            {                
+                return view('payment');
+            }
+        else
+            {
+                $transactions = Transaction::all();
+                return view('home', ['transactions' => $transactions]);
+            }        
     }
 
 }

@@ -18,6 +18,9 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('userId')->references('id')->on('users');
             $table->decimal('amount', $precision = 8, $scale = 2);
             $table->string('merchantTransactionId');
+            $table->string('checkoutID')->default('Not Checked Out');
+            $table->string('resultCode')->default('Not recieved');
+            $table->string('description')->default('Not recieved');
             $table->timestamps();
         });
     }
